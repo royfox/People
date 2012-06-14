@@ -8,6 +8,7 @@ People::Application.routes.draw do
   end
   resources :users
   resources :sessions
+  #resources :comments, :only => [:create, :destroy]
   
   root :to => 'users#new'
   get "home/index"
