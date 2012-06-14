@@ -1,3 +1,14 @@
 // Place all the styles related to the People controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.comment{
+	border:1px solid #91A7FF;
+	width: 500px;
+	padding:5px;
+	margin:3px;
+}
+.comment .commenter{
+	font-weight:bold;
+}
