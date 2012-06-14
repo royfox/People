@@ -24,6 +24,11 @@
     <%= f.text_field :phone %>
   </div>
 
+  <div class="field">
+    <%= f.label :state_id %><br />
+    <%= collection_select(:person, :state_id, State.all, :id, :name) %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

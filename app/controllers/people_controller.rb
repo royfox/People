@@ -18,6 +18,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
+    @states = State.find(:all)
 
     respond_to do |format|
       format.html # show.html.erb
