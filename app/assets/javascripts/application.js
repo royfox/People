@@ -13,3 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+
+
+});
+
+
+function changeState(self){
+	$.ajax({
+		url: '/people/'+$(self).attr('person_id')+'/state',
+		data: {'state_id' :  $(self).find('option:selected').val()},
+		type: 'POST',
+		success: function(data) {
+			$("#state_button").html(data)
+		}
+	});
+}

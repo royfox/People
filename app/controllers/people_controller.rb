@@ -85,4 +85,36 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+ 
+  def sendmail
+    @person = Person.find(params[:id])
+    mailtype = params[:mailtype]
+    if mailtype == 1
+      PersonMailer.test1(@person).deliver
+    elsif mailtype == 2
+      PersonMailer.test2(@person).deliver
+    elsif mailtype == 3
+      PersonMailer.rejected(@person).deliver
+    
+    @comment = @person.comments.new
+    @comment.body = "Test 1 email delivered"
+    @comment.user = current_user
+    @comment.save
+
+    respond_to do |format|
+      format.html { redirect_to @person, notice: 'Test 1 email was successfully sent' }
+      format.json { head :no_content }
+    end   
+  end
+  
+  
+  def state
+    @person = Person.find(params[:id])
+    @person.state_id = params[:state_id]
+
+    if @person.save
+      render :partial => "state#{@person.state_id}", :layout => false
+    end
+  end
+  
 end

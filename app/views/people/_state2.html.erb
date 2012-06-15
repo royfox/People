@@ -1,0 +1,4 @@
+<%= form_tag(:controller => "people", :action => "sendmail") do %>
+	<%= hidden_field_tag 'mailtype', 1 %>
+	<%= submit_tag "Send test 1 mail", :confirm => "Are you sure?" %>
+<% end %>

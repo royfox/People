@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div id="userinfo">
+	<p>
+	  <b>Name:</b>
+	  <span id="name"><%= @person.name %></span>
+	</p>
+	<p>
+	  <b>Email:</b>
+	  <span id="email"><%= @person.email %></span>
+	</p>
+	<p>
+	  <b>Phone:</b>
+	  <span id="phone"><%= @person.phone %></phone>
+	</p>
 
-<p>
-  <b>Name:</b>
-  <%= @person.name %>
-</p>
-<p>
-  <b>Email:</b>
-  <%= @person.email %>
-</p>
-<p>
-  <b>Phone:</b>
-  <%= @person.phone %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= collection_select(:person, :state_id, State.all, :id, :name) %>
-</p>
-
-
+	<p>
+	  <b>State:</b>
+	  <%= collection_select(:person, :state_id, State.all, :id, :name, {}, {:onchange => 'changeState(this)', :person_id => @person.id}) %>
+	</p>
+	<div id="state_button">
+	</div>
+</div>
 <h2>Comments</h2>
 <% @person.comments.reverse.each do |comment| %>
 	<div class="comment">

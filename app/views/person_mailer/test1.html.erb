@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+	<p>
+	Dear <%= @person.name %>,
+	</p>
+    <p>
+	We have received your CV and consider you for a position as Software Engineer. We think that your profile looks interesting and we would like to assess your ability to solve a test-case that reflects a relevant tasks you could be working on here. If you're successful, the next stage will be a face-to-face interview at our offices in Notting Hill, London.
+	</p>
+	<p>
+	Still interested? Great!
+	</p>
+	<p>
+	We'd like you to send us some source code that solves the problem below. The task itself should take about an hour. The brief for the task is quite open ended, so if you have any questions at all, about the task or the application process, or if you are unable to attempt the task during the next few days, please let me know.
+	</p>
+	When you are done with the test simply send the answer and the source code for both to helene.mark@footballradar.com and johan.laidlaw@footballradar.com
+	</p>
+	<p>
+	Best of luck and looking very much forward to seeing your answer!
+	</p>
+	<p>
+	<u>The Tasks</u>
+	</p>
+	<p>
+	<b>Task 1)</b>
+	</p>
+	<p>
+	Click on the link below and solve the problem.
+	</p>
+	<p>
+		<%= @quiz_url %>
+	</p>
+	<p>
+	<b>Task 2)</b>
+	</p>
+	<p>
+	We are interested in finding out which teams were the most profitable to bet on during the previous Premier League season (2009/10). 
+	</p>
+	<p>
+	Here is a link to a CSV file containing data about that season:
+	</p>
+	<p>
+		<%= @csv_url %>
+	</p>
+	<p>
+	Your task is to write a PHP script that calculates and displays the profit or loss I would have made for each team if I had bet £10 with Bet365 on that team to win every game.
+	</p>
+	<p>
+	Note: you may find these columns in the CSV file useful:
+	</p>
+	<p>
+	HomeTeam = Home Team<br />
+	AwayTeam = Away Team<br />
+	FTHG = Full Time Home Team Goals<br />
+	FTAG = Full Time Away Team Goals<br />
+	B365H = Bet365 home win odds<br />
+	B365D = Bet365 draw odds<br />
+	B365A = Bet365 away win odds
+	</p>
+	<p>
+	Please make the script runnable from the command line and output the data to the console
+  </body>
+</html>

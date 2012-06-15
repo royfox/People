@@ -5,6 +5,12 @@ People::Application.routes.draw do
 
   resources :people do
     resources :comments
+    member do
+      post 'sendmail'
+    end
+    member do
+      post 'state'
+    end
   end
   resources :users
   resources :sessions

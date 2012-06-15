@@ -12,3 +12,27 @@
 .comment .commenter{
 	font-weight:bold;
 }
+
+
+#preview{	
+	position: fixed;
+    width:500px;
+	height:700px;
+    background-color:#FFF;
+    padding:10px;
+    border:5px solid #682FF7;
+    z-index:200;
+   	top: 20%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -250px;
+	overflow-y:scroll;
+}
+
+#mailcontent{
+	border: 1px solid #BDBDBD;
+	width: 800px;
+	height:300px;
+	overflow-y:auto;
+	padding:2px;
+}
