@@ -9,5 +9,6 @@ class Person < ActiveRecord::Base
   
   has_many :comments
   belongs_to :state
+  has_many :documents, :dependent => :destroy
   
 end

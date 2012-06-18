@@ -89,12 +89,15 @@ class PeopleController < ApplicationController
   def sendmail
     @person = Person.find(params[:id])
     mailtype = params[:mailtype]
-    if mailtype == 1
-      PersonMailer.test1(@person).deliver
-    elsif mailtype == 2
-      PersonMailer.test2(@person).deliver
-    elsif mailtype == 3
-      PersonMailer.rejected(@person).deliver
+    logger.debug "mailtype: #{mailtype}"
+
+    # if mailtype == 1
+    #   PersonMailer.test1(@person).deliver
+    # elsif mailtype == 2
+    #   PersonMailer.test2(@person).deliver
+    # elsif mailtype == 3
+    #   PersonMailer.rejected(@person).deliver
+    # end
     
     @comment = @person.comments.new
     @comment.body = "Test 1 email delivered"
