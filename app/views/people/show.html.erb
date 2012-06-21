@@ -18,6 +18,15 @@
 	</p>
 	<div id="state_button">
 	</div>
+
+	<% @person.documents.each do |document| %>
+      <p>
+        <%= link_to document.doc_file_name, document.doc.url(:original) %>
+        <%= "Created #{time_ago_in_words(document.created_at)}" %>
+      </p>
+  	<% end %>
+
+
 </div>
 <h2>Comments</h2>
 <% @person.comments.reverse.each do |comment| %>

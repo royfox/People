@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  attr_accessible :name, :email, :phone, :state_id
+  attr_accessible :name, :email, :phone, :state_id, :documents_attributes
   
   validates :name,  :presence => true,
                     :uniqueness => true
@@ -9,6 +9,8 @@ class Person < ActiveRecord::Base
   
   has_many :comments
   belongs_to :state
+  
   has_many :documents, :dependent => :destroy
+  accepts_nested_attributes_for :documents, :allow_destroy => true
   
 end

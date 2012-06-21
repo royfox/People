@@ -1,4 +1,4 @@
-<%= form_for(@person) do |f| %>
+<%= form_for @person, :html => {:multipart => true}  do |f| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
@@ -29,6 +29,22 @@
     <%= collection_select(:person, :state_id, State.all, :id, :name) %>
   </div>
 
+  <%= f.fields_for :documents do |doc_fields| %>
+    <% if doc_fields.object.new_record? %>
+    <p>
+      <%= doc_fields.file_field :doc %>
+    </p>
+    <% end %>
+  <% end %>
+  
+  <%= f.fields_for :documents do |doc_fields| %>
+    <% unless doc_fields.object.new_record? %>
+      <p>
+        <%= link_to doc_fields.object.doc_file_name, doc_fields.object.doc.url(:original) %>
+        Delete: <%= doc_fields.check_box :_destroy %>
+      </p>
+    <% end %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
