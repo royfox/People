@@ -16,7 +16,7 @@ People::Application.routes.draw do
   resources :sessions
 
   
-  root :to => 'users#new'
+  root :to => 'people#index'
   get "home/index"
 
 
