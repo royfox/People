@@ -1,0 +1,33 @@
+<%= form_for(@email_template) do |f| %>
+  <% if @email_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@email_template.errors.count, "error") %> prohibited this email_template from being saved:</h2>
+
+      <ul>
+      <% @email_template.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :states %><br />
+    <% @states.each do |s| %>
+      <%= check_box_tag("email_template[state_list][#{s.id}]","1", @email_template.states.detect{|d| d == s}) %>
+      <%= "#{s.name}"%><br />
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
