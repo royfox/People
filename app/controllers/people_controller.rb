@@ -93,16 +93,31 @@ class PeopleController < ApplicationController
     mailtype = params[:mailtype]
     logger.debug "mailtype: #{mailtype}"
 
-    # if mailtype == 1
-    #   PersonMailer.test1(@person).deliver
+
+    email_template = EmailTemplate.find(1)
+    erb = ERB.new(email_template.body)
+    header = "<!DOCTYPE html>
+      <html>
+        <head>
+          <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" />
+        </head>
+        <body>"
+    footer = "</body></html>"
+    body = "#{header}#{erb.result(binding)}#{footer}"
+   
+
+    PersonMailer.email(@person, email_template.subject, body).deliver
+
+    #if mailtype == 2
+     # PersonMailer.test1(@person).deliver
     # elsif mailtype == 2
     #   PersonMailer.test2(@person).deliver
     # elsif mailtype == 3
     #   PersonMailer.rejected(@person).deliver
-    # end
+    #end
     
     @comment = @person.comments.new
-    @comment.body = "Test 1 email delivered"
+    @comment.body = "Test 999 email delivered"
     @comment.user = current_user
     @comment.save
 

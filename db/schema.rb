@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621193608) do
+ActiveRecord::Schema.define(:version => 20120714202929) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(:version => 20120621193608) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  create_table "email_templates", :force => true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "email_templates_states", :id => false, :force => true do |t|
+    t.integer "email_template_id"
+    t.integer "state_id"
+  end
+
+  add_index "email_templates_states", ["email_template_id", "state_id"], :name => "index_email_templates_states_on_email_template_id_and_state_id"
+  add_index "email_templates_states", ["state_id", "email_template_id"], :name => "index_email_templates_states_on_state_id_and_email_template_id"
 
   create_table "people", :force => true do |t|
     t.string   "name"
