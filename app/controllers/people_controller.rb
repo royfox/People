@@ -96,17 +96,8 @@ class PeopleController < ApplicationController
 
     email_template = EmailTemplate.find(1)
     erb = ERB.new(email_template.body)
-    header = "<!DOCTYPE html>
-      <html>
-        <head>
-          <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" />
-        </head>
-        <body>"
-    footer = "</body></html>"
-    body = "#{header}#{erb.result(binding)}#{footer}"
-   
 
-    PersonMailer.email(@person, email_template.subject, body).deliver
+    PersonMailer.email(@person, email_template.subject, erb.result(binding)).deliver
 
     #if mailtype == 2
      # PersonMailer.test1(@person).deliver

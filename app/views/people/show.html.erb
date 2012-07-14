@@ -13,8 +13,29 @@
 	</p>
 
 	<p>
-	  <b>State:</b>
-	  <%= collection_select(:person, :state_id, State.all, :id, :name, {}, {:onchange => 'changeState(this)', :person_id => @person.id}) %>
+		<b>Current state:</b> <%= @person.state.name %>
+	</p>
+	<p>
+		<div class="tabs">
+			<ul class="tabNavigation">
+			<% @states.each do |state| %>
+				<li><a href="#state_<%= state.id %>" /> <%= state.name %> </a>
+			<% end %>
+			</ul>
+			<% @states.each do |state| %>
+				<div class="state_container" id="state_<%= state.id %>">
+					<b>Email Templates</b><br />
+					<% state.email_templates.each do |et| %>
+						<div class="et_container">
+						<input type="checkbox"> <%= et.subject %> [show] [edit]<br />
+						<hr>
+						<%= truncate(et.body,:length => 100) %> <br />
+						</div>
+					<% end %>
+					<button>Change state to <%= state.name %> and send selected email</button>
+				</div>
+			<% end %>
+		</div>
 	</p>
 	<div id="state_button">
 	</div>

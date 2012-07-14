@@ -36,3 +36,51 @@
 	overflow-y:auto;
 	padding:2px;
 }
+
+
+UL.tabNavigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+UL.tabNavigation li {
+    padding: 0px 4px 0px 0px;
+    display: inline;
+}
+
+UL.tabNavigation li A {
+    padding: 4px 15px;
+    background-color: #ccc;
+    color: #000;
+    text-decoration: none;
+}
+
+UL.tabNavigation li A.selected,
+UL.tabNavigation li A:hover {
+    background-color: #333;
+    color: #fff;
+    padding-top: 7px;
+}
+
+UL.tabNavigation li A:focus {
+        outline: 0;
+}
+
+div.tabs > div {
+        padding: 5px;
+        margin-top: 3px;
+        border: 2px solid #333;
+}
+
+div.tabs > div h2 {
+        margin-top: 0;
+}
+div.state_container {
+    width:500px;
+}
+div.et_container{
+    margin:3px;
+    padding:5px;
+    border:1px solid grey;
+}
