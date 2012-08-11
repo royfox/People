@@ -17,3 +17,6 @@
 	border:1px solid #BDBDBD;
 	padding: 4px;
 }
+#user_info {
+	float:right;
+}

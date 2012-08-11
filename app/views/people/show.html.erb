@@ -27,7 +27,8 @@
 					<b>Email Templates</b><br />
 					<% state.email_templates.each do |et| %>
 						<div class="et_container">
-						<input type="checkbox"> <%= et.subject %> <%= link_to '[show]', email_template_path(et) %> <%= link_to '[edit]', edit_email_template_path(et) %> <br />
+						<input type="checkbox"> <%= link_to '[show]', email_template_path(et) %> <%= link_to '[edit]', edit_email_template_path(et) %> <br />
+						<%= et.subject %><br />
 						<hr>
 						<%= truncate(et.body,:length => 100) %> <br />
 						</div>
@@ -40,12 +41,15 @@
 	<div id="state_button">
 	</div>
 
+	<h2>Files</h2>
 	<% @person.documents.each do |document| %>
       <p>
         <%= link_to document.doc_file_name, document.doc.url(:original) %>
         <%= "Created #{time_ago_in_words(document.created_at)}" %>
       </p>
   	<% end %>
+  	<%= link_to "Add file", edit_person_path %>
+  	<br />
 
 
 </div>
