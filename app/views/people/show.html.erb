@@ -1,3 +1,4 @@
+<h2>Information</h2>
 <div id="userinfo">
 	<p>
 	  <b>Name:</b>
@@ -15,6 +16,7 @@
 	<p>
 		<b>Current state:</b> <%= @person.state.name %>
 	</p>
+	<h2>State</h2>
 	<p>
 		<div class="tabs">
 			<ul class="tabNavigation">
@@ -23,18 +25,22 @@
 			<% end %>
 			</ul>
 			<% @states.each do |state| %>
-				<div class="state_container" id="state_<%= state.id %>">
+				<div class="state_container" id="state_<%= state.id %>" >
+					<%= form_tag :action => 'state', :id => @person do %>
 					<b>Email Templates</b><br />
 					<% state.email_templates.each do |et| %>
 						<div class="et_container">
-						<input type="checkbox"> <%= link_to '[show]', email_template_path(et) %> <%= link_to '[edit]', edit_email_template_path(et) %> <br />
+						<%= check_box_tag "email_template", et.id %> <%= link_to '[show]', email_template_path(et) %> <%= link_to '[edit]', edit_email_template_path(et) %> <br />
 						<%= et.subject %><br />
 						<hr>
-						<%= truncate(et.body,:length => 100) %> <br />
+						<%= raw truncate(et.body,:length => 100) %> <br />
 						</div>
 					<% end %>
-					<button>Change state to <%= state.name %> and send selected email</button>
+					<%= hidden_field_tag "state_id", state.id %>
+					<%= submit_tag( "Change to #{state.name} and send selected email" ) %>
+					<% end %>
 				</div>
+				
 			<% end %>
 		</div>
 	</p>
@@ -50,8 +56,6 @@
   	<% end %>
   	<%= link_to "Add file", edit_person_path %>
   	<br />
-
-
 </div>
 <h2>Comments</h2>
 <% @person.comments.reverse.each do |comment| %>
@@ -61,15 +65,14 @@
 			<%= link_to 'delete', person_comment_path(@person, comment), :confirm => 'Are you sure?', :method => :delete, :class => "" %></small>
 		</div>
 		<div class="body">
-			<%= comment.body %>
+			<%= raw comment.body %>
 		</div>
 	</div>
 <% end %>
 
-<h2>Add a comment:</h2>
 <%= form_for([@person, @person.comments.build]) do |f| %>
   <div class="field">
-    <%= f.label :body %><br />
+    Add comment<br />
     <%= f.text_area :body, :cols => "60", :rows => "7" %>
   </div>
   <div class="actions">
@@ -80,3 +83,9 @@
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
+
+
+<%= javascript_tag do %>
+  window.person_state_id = '<%= @person.state.id %>';
+<% end %>
+

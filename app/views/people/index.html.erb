@@ -1,8 +1,9 @@
-<h1>Listing people</h1>
+<h1>People</h1>
 
 <table>
   <tr>
     <th>Name</th>
+    <th>State</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +12,7 @@
 <% @people.each do |person| %>
   <tr>
     <td><%= person.name %></td>
+    <td><%= person.state.name %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
@@ -21,5 +23,3 @@
 <br />
 
 <%= link_to 'New Person', new_person_path %>
-<br />
-<%= link_to 'Manage Email Templates', email_templates_path %>

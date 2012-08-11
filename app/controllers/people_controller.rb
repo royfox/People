@@ -90,32 +90,12 @@ class PeopleController < ApplicationController
  
   def sendmail
     @person = Person.find(params[:id])
-    mailtype = params[:mailtype]
-    logger.debug "mailtype: #{mailtype}"
+    email_template = params[:email_template]
 
-
-    email_template = EmailTemplate.find(1)
+    email_template = EmailTemplate.find(email_template)
     erb = ERB.new(email_template.body)
 
     PersonMailer.email(@person, email_template.subject, erb.result(binding)).deliver
-
-    #if mailtype == 2
-     # PersonMailer.test1(@person).deliver
-    # elsif mailtype == 2
-    #   PersonMailer.test2(@person).deliver
-    # elsif mailtype == 3
-    #   PersonMailer.rejected(@person).deliver
-    #end
-    
-    @comment = @person.comments.new
-    @comment.body = "Test 999 email delivered"
-    @comment.user = current_user
-    @comment.save
-
-    respond_to do |format|
-      format.html { redirect_to @person, notice: 'Test 1 email was successfully sent' }
-      format.json { head :no_content }
-    end   
   end
   
   
@@ -124,8 +104,33 @@ class PeopleController < ApplicationController
     @person.state_id = params[:state_id]
 
     if @person.save
-      render :partial => "state#{@person.state_id}", :layout => false
+      if params[:email_template]
+        sendmail
+        addComment("State changed to <i>#{@person.state.name}</i> and <a href=\"/email_templates/#{params[:email_template]}\">email</a> is delivered")
+        respond_to do |format|
+          format.html { redirect_to @person, notice: "State changed to #{@person.state.name} and email was successfully sent" }
+          format.json { head :no_content }
+        end
+      else
+        addComment("State changed to <i>#{@person.state.name}</i>")
+        respond_to do |format|
+          format.html { redirect_to @person, notice: 'State is changed' }
+          format.json { head :no_content }
+        end
+
+      end
     end
   end
   
+
+
+  private 
+  def addComment(body)
+    @comment = @person.comments.new
+    @comment.body = body
+    @comment.user = current_user
+    @comment.save
+  end
+
+
 end
