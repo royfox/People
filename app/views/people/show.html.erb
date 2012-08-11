@@ -27,7 +27,7 @@
 					<b>Email Templates</b><br />
 					<% state.email_templates.each do |et| %>
 						<div class="et_container">
-						<input type="checkbox"> <%= et.subject %> [show] [edit]<br />
+						<input type="checkbox"> <%= et.subject %> <%= link_to '[show]', email_template_path(et) %> <%= link_to '[edit]', edit_email_template_path(et) %> <br />
 						<hr>
 						<%= truncate(et.body,:length => 100) %> <br />
 						</div>
