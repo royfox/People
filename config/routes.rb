@@ -1,4 +1,6 @@
 People::Application.routes.draw do
+  resources :roles
+
   resources :email_templates
   resources :states
 

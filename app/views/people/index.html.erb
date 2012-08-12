@@ -1,25 +1,22 @@
 <h1>People</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>State</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% @roles.each do |role| %>
+  <h3><%= role.name %></h3>
+  <table>
 
-<% @people.each do |person| %>
-  <tr>
-    <td><%= person.name %></td>
-    <td><%= person.state.name %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <% role.people.each do |person| %>
+
+    <tr>
+      <td><%= person.name %></td>
+      <td><%= person.state.name %></td>
+      <td><%= link_to 'Show', person %></td>
+      <td><%= link_to 'Edit', edit_person_path(person) %></td>
+      <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>
 
-<br />
-
+<p>
 <%= link_to 'New Person', new_person_path %>
+</p>

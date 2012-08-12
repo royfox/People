@@ -28,6 +28,11 @@
     <%= f.label :state_id %><br />
     <%= collection_select(:person, :state_id, State.all, :id, :name) %>
   </div>
+  
+  <div class="field">
+    <%= f.label :role_id %><br />
+    <%= collection_select(:person, :role_id, Role.all, :id, :name) %>
+  </div>
 
   <div class="field">
     <%= f.label :documents %><br />

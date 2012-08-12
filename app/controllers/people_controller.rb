@@ -6,6 +6,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+    @roles = Role.all
     @people = Person.all
 
     respond_to do |format|

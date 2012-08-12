@@ -10,9 +10,13 @@
 	</p>
 	<p>
 	  <b>Phone:</b>
-	  <span id="phone"><%= @person.phone %></phone>
+	  <span id="phone"><%= @person.phone %></span>
 	</p>
-
+	
+	<p>
+	  <b>Role:</b>
+	  <span id="role"><%= @person.role.name %></span>
+	</p>
 	<p>
 		<b>Current state:</b> <%= @person.state.name %>
 	</p>
